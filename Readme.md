@@ -22,6 +22,10 @@ Full documentation can be found [here](http://madebymany.github.io/sir-trevor-js
 2. [Umbraco 7](https://github.com/mindrevolution/SirTrevor-for-Umbraco), [Umbraco 6](http://our.umbraco.org/projects/backoffice-extensions/skybrud-sir-trevor-editor)
 3. [CakePHP](http://github.com/martinbean/cakephp-sir-trevor-plugin)
 4. [Wordpress](https://github.com/raffij/sir-trevor-wordpress)
+5. [Laravel](https://github.com/caouecs/Laravel4-SirTrevorJS)
+6. [Django](https://github.com/philippbosch/django-sirtrevor)
+7. [Yii Framework](https://github.com/DrMabuse23/yii2-sir-trevor-js)
+
 
 ## Custom blocks
 
@@ -40,19 +44,6 @@ Sir Trevor is only tested on the following modern browsers:
 
 Sir Trevor requires [Underscore](http://underscorejs.org/) (or LoDash), [jQuery](http://jquery.com) (or Zepto) and [Eventable](https://github.com/madebymany/eventable).
 
-### [Component/component](http://github.com/component/component)
-
-Sir Trevor can also load dependencies using component.
-
-    component install madebymany/sir-trevor-js
-
-For a component/component example:
-
-    cd examples-component
-    component install
-    component build
-    open index.html
-
 ## Contributing
 
 See the [roadmap](https://github.com/madebymany/sir-trevor-js/wiki/Roadmap) and read a little about [the philosophy](https://github.com/madebymany/sir-trevor-js/wiki/Philosophy) guiding development.
@@ -70,6 +61,10 @@ Block Types can also easily be added to the ``SirTrevor.Blocks`` object. You can
 We use the awesome [Grunt](http://gruntjs.com/) for our build process. Before getting started please be sure to install the necessary dependencies via npm:
 
 ``$ npm install``
+
+Make sure install the dependecies of bower. As you need jQuery, Eventable and Underscore while you are testing with Jasmine:
+
+``$ bower install``
 
 When completed you'll be able to run the various grunt commands provided:
 

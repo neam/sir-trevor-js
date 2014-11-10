@@ -39,7 +39,10 @@
     required: [],
     uploadUrl: '/attachments',
     baseImageUrl: '/sir-trevor-uploads/',
-    errorsContainer: undefined
+    errorsContainer: undefined,
+    toMarkdown: {
+      aggresiveHTMLStrip: false
+    }
   };
 
   SirTrevor.BlockMixins = {};
@@ -144,7 +147,7 @@
   SirTrevor.bindFormSubmit = function(form) {
     if (!formBound) {
       new SirTrevor.Submittable(form);
-      form.bind('submit', this.onFormSubmit);
+      form.on('submit.sirtrevor', this.onFormSubmit);
       formBound = true;
     }
   };

@@ -1,6 +1,6 @@
 SirTrevor.Block = (function(){
 
-  var Block = function(data, instance_id, sirTrevor) {
+  var Block = function(data, instance_id) {
     SirTrevor.SimpleBlock.apply(this, arguments);
   };
 
@@ -58,7 +58,7 @@ SirTrevor.Block = (function(){
     icon_name: 'default',
 
     validationFailMsg: function() {
-      return i18n.t('errors:validation_fail', { type: _.result(this,'title') });
+      return i18n.t('errors:validation_fail', { type: this.title() });
     },
 
     editorHTML: '<div class="st-block__editor"></div>',
@@ -316,16 +316,13 @@ SirTrevor.Block = (function(){
     },
 
     getSelectionForFormatter: function() {
-      _.defer(function(){
+      _.defer(function(block){
         var selection = window.getSelection(),
-           selectionStr = selection.toString().trim();
+           selectionStr = selection.toString().trim(),
+           eventType = (selectionStr === '') ? 'hide' : 'position';
 
-        if (selectionStr === '') {
-          SirTrevor.EventBus.trigger('formatter:hide');
-        } else {
-          SirTrevor.EventBus.trigger('formatter:position');
-        }
-      });
+        SirTrevor.EventBus.trigger('formatter:' + eventType, block);
+      }, this);
      },
 
     clearInsertedStyles: function(e) {

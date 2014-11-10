@@ -48,11 +48,11 @@ SirTrevor.Editor = (function(){
       this._bindFunctions();
 
       this.store("create");
-      
+
       SirTrevor.instances.push(this);
-      
+
       this.build();
-      
+
       SirTrevor.bindFormSubmit(this.$form);
     },
 
@@ -81,7 +81,7 @@ SirTrevor.Editor = (function(){
       $(document.body).append(this.formatBar.render().$el);
       this.$outer.append(this.block_controls.render().$el);
 
-      $(window).bind('click', this.hideAllTheThings);
+      $(window).bind('click.sirtrevor', this.hideAllTheThings);
 
       var store = this.store("read");
 
@@ -204,7 +204,7 @@ SirTrevor.Editor = (function(){
       this.blocks.push(block);
       this._incrementBlockTypeCount(type);
 
-      block.focus();
+      !data && block.focus();
 
       SirTrevor.EventBus.trigger(data ? "block:create:existing" : "block:create:new", block);
       SirTrevor.log("Block created of type " + type);
@@ -217,8 +217,10 @@ SirTrevor.Editor = (function(){
     },
 
     onNewBlockCreated: function(block) {
-      this.hideBlockControls();
-      this.scrollTo(block.$el);
+      if (block.instanceID === this.ID) {
+        this.hideBlockControls();
+        this.scrollTo(block.$el);
+      }
     },
 
     scrollTo: function(element) {

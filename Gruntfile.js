@@ -16,7 +16,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks("grunt-image-embed");
 
   grunt.initConfig({
 
@@ -26,11 +25,11 @@ module.exports = function(grunt) {
       'sir-trevor': {
         src : 'sir-trevor.js',
         options: {
-          vendor: ['components/jquery/jquery.js',
-            'components/underscore/underscore.js',
-            'components/Eventable/eventable.js'],
+          vendor: ['bower_components/jquery/jquery.js',
+                   'bower_components/underscore/underscore.js',
+                   'bower_components/Eventable/eventable.js'],
           specs : 'spec/javascripts/**/*.spec.js',
-          helpers : 'spec/helpers/*.js'
+          helpers : 'spec/javascripts/helpers/*.js'
         }
       }
     },
@@ -94,16 +93,6 @@ module.exports = function(grunt) {
           'sir-trevor.css': 'src/sass/main.scss'
         }
       }
-    },
-
-    imageEmbed: {
-      dist: {
-        src: [ "public/images/icons/sir-trevor-icons.tpl.css" ],
-        dest: "sir-trevor-icons.css",
-        options: {
-          deleteAfterEncoding : false
-        }
-      }
     }
 
   });
@@ -113,9 +102,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('travis', ['rig', 'jasmine']);
 
-  grunt.registerTask('icons', ['imageEmbed']);
-
-  grunt.registerTask('default', ['sass', 'icons', 'rig', 'uglify', 'jasmine']);
+  grunt.registerTask('default', ['sass', 'rig', 'uglify', 'jasmine']);
 
   grunt.registerTask('jasmine-browser', ['server','watch']);
 
